@@ -10,11 +10,12 @@ server.on('request', (req, res) => {
   const pathname = url.pathname.slice(1);
 
   const filePath = path.join(__dirname, 'files', pathname);
-  console.log(pathname.split('/'));
 
   if (pathname.split('/').length > 1) {
     res.statusCode = 400;
     res.end('Nested path');
+
+    return;
   }
 
   switch (req.method) {
