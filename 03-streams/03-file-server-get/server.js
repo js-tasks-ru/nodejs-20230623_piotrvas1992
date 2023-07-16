@@ -26,6 +26,10 @@ server.on('request', (req, res) => {
         } else {
           const stream = fs.createReadStream(filePath);
           stream.pipe(res);
+
+          res.on('close', () => {
+            stream.destroy();
+          });
         }
       });
       break;
